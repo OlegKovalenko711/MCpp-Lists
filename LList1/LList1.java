@@ -151,16 +151,20 @@ public class LList1 implements EList
 
 		if (p.next == null)
 		{
+			del = p.val;
 			p.next = null;
 		}
-
-		while (p.next.next != null)
+		else
 		{
-			p = p.next;
-		}
-		del = p.next.val;
 
-		p.next = null;
+			while (p.next.next != null)
+			{
+				p = p.next;
+			}
+
+			del = p.next.val;
+			p.next = null;
+		}
 
 		return del;
 	}
@@ -168,8 +172,32 @@ public class LList1 implements EList
 	@Override
 	public int delPos(int pos)
 	{
+		if (root == null || pos < 0 || pos > size())
+		{
+			throw new IllegalArgumentException();
+		}
 
-		return 0;
+		Node p = root;
+		int ret = 0;
+
+		if (root.next == null)
+		{
+			delStart();
+			ret = p.val;
+		}
+		else
+		{
+			Node tmp = null;
+			for (int i = 0; i < pos; i++)
+			{
+				tmp = p;
+				p = p.next;
+			}
+			ret = p.val;
+			tmp.next = p.next;
+		}
+
+		return ret;
 	}
 
 	@Override
@@ -304,31 +332,43 @@ public class LList1 implements EList
 	@Override
 	public void halfRevers()
 	{
-		Node p = root;
-		root = null;
+		if (size() <= 1)
+			return;
+		int h = size() / 2;
+		int k = size() - h;
+		int delta = size() % 2;
+		int count = k;
 
-		while (p != null)
+		for (int i = 0; i < k; i++)
 		{
-			addStart(p.val);
-			p = p.next;
+			if (count == delta)
+			{
+				break;
+			}
+			else
+			{
+				int tmp = get(i);
+				set(i, get(i + k));
+				set(i + k, tmp);
+			}
+			count--;
 		}
-
 	}
 
 	@Override
 	public void sort()
 	{
-		Node p = root;
-		Node k = root;
-		Node prev = root;
-
-		while (p != null)
+		for (int i = size() - 1; i >= 1; i--)
 		{
-			if (p.val < 3)
+			for (int j = 0; j < i; j++)
 			{
-				set(0, p.val);
+				if (get(j) > get(j + 1))
+				{
+					int tmp = get(j);
+					set(j, get(j + 1));
+					set(j + 1, tmp);
+				}
 			}
-			p = p.next;
 		}
 	}
 
