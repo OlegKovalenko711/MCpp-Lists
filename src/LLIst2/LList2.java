@@ -37,21 +37,35 @@ public class LList2 implements EList
 	@Override
 	public void clear()
 	{
-		// TODO Auto-generated method stub
-
+		root = null;
 	}
 
 	@Override
 	public void init(int[] ini)
 	{
-		// TODO Auto-generated method stub
+		if (ini == null || ini.length == 0)
+			return;
 
+		for (int i = ini.length - 1; i >= 0; i--)
+		{
+			addStart(ini[i]);
+		}
 	}
 
 	@Override
 	public int size()
 	{
-		// TODO Auto-generated method stub
+		if (root == null)
+			throw new IllegalArgumentException();
+
+		int count = 0;
+		Node p = root;
+
+		while (p != null)
+		{
+			p = p.next;
+			count++;
+		}
 		return 0;
 	}
 
@@ -81,43 +95,83 @@ public class LList2 implements EList
 	@Override
 	public void addEnd(int val)
 	{
-		// TODO Auto-generated method stub
-
+		Node tmp = new Node(val);
+		Node p = root;
+		while (p.next != null)
+		{
+			p = p.next;
+		}
+		tmp.prev = p;
+		tmp.next = p.next;
+		p.next = tmp;
 	}
 
 	@Override
 	public void addPos(int pos, int val)
 	{
-		// TODO Auto-generated method stub
+		Node tmp = new Node(val);
+		Node p = root;
 
+		if (root == null || pos == 0)
+		{
+			addStart(val);
+		}
+		else
+		{
+			for (int i = 1; i < pos; i++)
+			{
+				p = p.next;
+			}
+			tmp.prev = p;
+			tmp.next = p.next;
+			p.next = tmp;
+		}
 	}
 
 	@Override
 	public void addStart(int[] arr)
 	{
-		// TODO Auto-generated method stub
-
+		addStart(arr);
 	}
 
 	@Override
 	public void addEnd(int[] arr)
 	{
-		// TODO Auto-generated method stub
+		Node p = root;
 
+		while (p.next != null)
+		{
+			p = p.next;
+		}
+		addEnd(arr);
 	}
 
 	@Override
 	public void addPos(int pos, int[] arr)
 	{
-		// TODO Auto-generated method stub
-
+		for (int i = arr.length - 1; i >= 0; i--)
+		{
+			addPos(pos, arr[i]);
+		}
 	}
 
 	@Override
 	public int delStart()
 	{
-		// TODO Auto-generated method stub
-		return 0;
+		if (root == null)
+			throw new IllegalArgumentException();
+
+		int ret = 0;
+		if (root.next == null)
+		{
+			root = null;
+		}
+		else
+		{
+			root.next.prev = null;
+			root = root.next;
+		}
+		return ret;
 	}
 
 	@Override
