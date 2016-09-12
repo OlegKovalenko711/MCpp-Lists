@@ -15,7 +15,8 @@ public class XLList2
 		lst.addStart(19);
 		lst.addPos(1,tmp);
 		lst.delStart();
-		lst.displayList();
+        lst.displayList();
+		
 	}
 
 }

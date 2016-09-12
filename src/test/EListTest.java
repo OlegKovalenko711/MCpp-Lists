@@ -16,6 +16,7 @@ import interfaces.*;
 import AList0.*;
 import AList1.*;
 import AList2.AList2;
+import LLIst2.LList2;
 import LList1.LList1;
 
 @RunWith(value = Parameterized.class)
@@ -27,7 +28,7 @@ public class EListTest
 	@Parameters
 	public static Collection<Object[]> data()
 	{
-		Object[][] data = new Object[][] { { new AList0() }, { new AList1() }, { new AList2() }, { new LList1() } };
+		Object[][] data = new Object[][] { { new AList0() }, { new AList1() }, { new AList2() }, { new LList1() }, };
 		return Arrays.asList(data);
 	}
 

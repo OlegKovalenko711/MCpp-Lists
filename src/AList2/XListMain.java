@@ -1,18 +1,18 @@
 package AList2;
 
-
 import interfaces.EList;
 
 public class XListMain
 {
 	public static void main(String[] args)
 	{
-		EList a = new AList2();
-		int[] arr = {10, 211, 2, 333, 21, 30};
+		AList2 a = new AList2();
+		int[] arr = { 10, 211, 2, 333, 21, 10, 211, 2, 333, 21, 10, 211, 2, 333, 21, 10, 211, 2, 333, 21, 10, 211, 2,
+				333, 21, 10, 211, 2, 333, 21 };
 
 		a.init(arr);
 
-		 int[] tmp = {1, 1, 1, 1, 1, 1, 1, 1, 1 };
+		int[] tmp = { 1 };
 
 		// a.balanceEnd();
 
@@ -35,11 +35,10 @@ public class XListMain
 		// a.addStart(i);
 		// }
 
-		 a.addEnd(tmp);
-		 
-//		a.addEnd(tmp);
+		// a.addStart(tmp);
 
-		System.out.println(a.size());
+		// a.addEnd(tmp);
+
 		System.out.println(a);
 	}
 
